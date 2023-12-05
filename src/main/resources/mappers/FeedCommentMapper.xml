@@ -20,4 +20,14 @@
         ORDER BY B.ifeed_comment
         LIMIT #{stardIdx}, #{rowCount}
     </select>
+
+    <delete id="delFeedCommentByFeed">
+        DELETE FROM t_feed_comment
+        WHERE ifeed = #{ifeed}
+    </delete>
+
+    <delete id="delFeedCommentAll">
+        DELETE FROM t_feed_comment
+        WHERE ifeed = #{ifeed}
+    </delete>
 </mapper>

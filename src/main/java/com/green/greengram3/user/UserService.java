@@ -46,4 +46,15 @@ public class UserService {
         vo.setResult(Const.LOGIN_DIFF_UPW);
         return vo;
     }
+    public ResVo toggleFollow(UserFollowDto dto){
+        // 삭제 먼저
+        int affectedRow = mapper.delUserFollow(dto);
+        if(affectedRow == 1){
+            return new ResVo(Const.USER_FOLLOW_DELETE);
+            // 영향받은행이 있으면 리턴
+        }
+        // 등록
+        mapper.insUserFollow(dto);
+        return new ResVo(Const.USER_FOLLOW_INSERT);
+    }
 }

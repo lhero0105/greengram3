@@ -2,10 +2,7 @@ package com.green.greengram3.feed;
 
 import com.green.greengram3.common.Const;
 import com.green.greengram3.common.ResVo;
-import com.green.greengram3.feed.model.FeedFavDto;
-import com.green.greengram3.feed.model.FeedInsDto;
-import com.green.greengram3.feed.model.FeedSelDto;
-import com.green.greengram3.feed.model.FeedSelVo;
+import com.green.greengram3.feed.model.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -32,7 +29,8 @@ public class FeedController {
 
     @Operation(summary = "피드 리스트", description = "피드 추가 처리")
     @GetMapping
-    public List<FeedSelVo> selFeedAll(FeedSelDto dto){
+    public List<FeedSelVo> selFeedAll(FeedSelDto dto){ // 쿼리스트링이지만 필수가 아닙니다.
+        log.info("{}",dto);
         FeedSelDto dto1 = new FeedSelDto();
         dto1.setLoginedIuser(dto.getLoginedIuser());
         dto1.setStartIdx((dto.getPage()-1)* Const.FEED_COUNT_PER_PAGE);
@@ -43,6 +41,14 @@ public class FeedController {
                         .rowCount(Const.FEED_COUNT_PER_PAGE)
                         .build());*/
     }
+
+    @DeleteMapping
+    public ResVo delFeed(FeedDelDto dto){
+        log.info("dto : {}", dto);
+        return service.delFeed(dto);
+    }
+
+
     @GetMapping("/fav")
     public ResVo toggleFeedFav(FeedFavDto dto){
         return service.feedFavToggle(dto);

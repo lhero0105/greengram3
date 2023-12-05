@@ -9,6 +9,7 @@
         , nm = #{nm}
         , pic = #{pic}
     </insert>
+
     <select id="selUser">
         SELECT iuser, upw, nm, pic, created_at AS createdAt, updated_at AS updatedAt
         FROM t_user
@@ -18,4 +19,16 @@
             </if>
         </where>
     </select>
+
+    <delete id="delUserFollow">
+        DELETE FROM t_user_follow
+        WHERE from_iuser = #{fromIuser}
+        AND to_iuser = #{toIuser}
+    </delete>
+
+    <insert id="insUserFollow">
+        INSERT INTO t_user_follow
+        SET from_iuser = #{fromIuser}
+        , to_iuser = #{toIuser}
+    </insert>
 </mapper>

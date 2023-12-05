@@ -69,6 +69,38 @@ public class FeedService {
         }
         return list;
     }
+    public ResVo delFeed(FeedDelDto dto){
+        // 방법 1 - select 해서 확인 후 차례대로 삭제
+        /*Integer ifeed = mapper.selIfeedByFeed(dto);
+        if(ifeed == null){
+            return new ResVo(0);
+        }
+        feedPicMapper.delFeedPicByFeed(dto);
+        feedFavMapper.delFeedFavByFeed(dto);
+        feedCommentMapper.delFeedCommentByFeed(dto);
+        mapper.delFeed(dto);
+        return new ResVo(1);*/
+
+        // 방법 2 = iuser ifeed에 해당하는 pic삭제 후 영향받은 행에 따라 삭제
+        // not null 이기에 pic을 활용
+        // 1. 이미지
+        int picsAffedtedRows = feedPicMapper.delFeedPicsAll(dto);
+        if(picsAffedtedRows == 0){
+            return new ResVo(Const.FAIL);
+            // 사실 뭐때문에 삭제 안됐는지 알려주어야 합니다.
+        }
+        // 원래는 트랜잭션을 걸어 하나라도 실패시 롤백 되도록 해주어야 합니다.
+        // 2. 좋아요
+        int favAffedtedRows = feedFavMapper.delFeedFavAll(dto);
+        // 3. 댓글
+        int commentAffetedRows = feedCommentMapper.delFeedCommentAll(dto);
+        // 4. 피드
+        int feedAffetedRows = mapper.delFeed(dto);
+        return new ResVo(Const.SUCCESS);
+
+
+    }
+
     public ResVo feedFavToggle(FeedFavDto dto){
         int affectedRows = feedFavMapper.delFeedFav(dto);
         if(affectedRows == 1){

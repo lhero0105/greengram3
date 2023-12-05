@@ -13,4 +13,14 @@
         WHERE iuser = #{iuser}
         AND ifeed = #{ifeed}
     </delete>
+
+    <delete id="delFeedFavByFeed">
+        DELETE FROM t_feed_fav
+        WHERE ifeed = #{ifeed}
+    </delete>
+
+    <delete id="delFeedFavAll">
+        DELETE FROM t_feed_fav
+        WHERE ifeed = #{ifeed}
+    </delete>
 </mapper>

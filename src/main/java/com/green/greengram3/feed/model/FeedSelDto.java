@@ -11,10 +11,14 @@ import lombok.Setter;
 @Data
 @Schema(title = "피드 리스트")
 public class FeedSelDto {
-    @Schema(title = "페이지")
+    @Schema(title = "페이지", required = true, defaultValue = "1")
     private int page;
-    @Schema(title = "로그인한 유저pk")
+    @Schema(title = "로그인한 유저pk", required = true)
     private int loginedIuser;
+    @Schema(title = "프로필 주인 유저pk")
+    private int targetIuser;
+    @Schema(title = "좋아요 Feed 리스트 여부", required = true)
+    private int isFavList;
     @JsonIgnore
     private int startIdx;
     @JsonIgnore

@@ -1,6 +1,7 @@
 package com.green.greengram3.user;
 
 import com.green.greengram3.common.ResVo;
+import com.green.greengram3.user.model.UserFollowDto;
 import com.green.greengram3.user.model.UserSigninDto;
 import com.green.greengram3.user.model.UserSigninVo;
 import com.green.greengram3.user.model.UserSignupDto;
@@ -49,4 +50,11 @@ public class UserController {
     // 유저 프로필
 
     // 유저 프사 변경
+
+    // -----------follow
+    // ResVo - result : 1-following, 0-취소
+    @PostMapping("/follow")
+    public ResVo toggleFollow(@RequestBody UserFollowDto dto){
+        return service.toggleFollow(dto);
+    }
 }

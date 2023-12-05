@@ -15,4 +15,20 @@
         SELECT pic FROM t_feed_pics
         WHERE ifeed = #{ifeed}
     </select>
+    <delete id="delFeedPicByFeed">
+        DELETE FROM t_feed_pics
+        WHERE ifeed = #{ifeed}
+    </delete>
+
+    <delete id="delFeedPics">
+        DELETE A
+        FROM t_feed_pics A
+        JOIN t_feed B
+        ON A.ifeed = B.ifeed
+        WHERE B.ifeed = #{ifeed}
+        AND B.iuser = #{iuser}
+<!--
+        해당하지 않는 피드에 유저를 쓰면 영향받은 행으로 확인 가능
+-->
+    </delete>
 </mapper>
