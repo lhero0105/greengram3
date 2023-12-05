@@ -57,4 +57,7 @@ public class UserService {
         mapper.insUserFollow(dto);
         return new ResVo(Const.USER_FOLLOW_INSERT);
     }
+    public UserInfoVo getUserInfo(UserInfoSelDto dto){
+        return mapper.selUserInfo(dto);
+    }
 }

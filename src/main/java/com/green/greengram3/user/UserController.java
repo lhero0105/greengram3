@@ -1,20 +1,15 @@
 package com.green.greengram3.user;
 
 import com.green.greengram3.common.ResVo;
-import com.green.greengram3.user.model.UserFollowDto;
-import com.green.greengram3.user.model.UserSigninDto;
-import com.green.greengram3.user.model.UserSigninVo;
-import com.green.greengram3.user.model.UserSignupDto;
+import com.green.greengram3.user.model.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -56,5 +51,13 @@ public class UserController {
     @PostMapping("/follow")
     public ResVo toggleFollow(@RequestBody UserFollowDto dto){
         return service.toggleFollow(dto);
+    }
+
+    //
+    @GetMapping
+    @Operation(summary = "유저 정보", description = "프로필 화면에서 사용할 프로필 유저 정보")
+    public UserInfoVo getUserInfo(UserInfoSelDto dto) {
+        log.info("dto: {}", dto);
+        return service.getUserInfo(dto);
     }
 }
