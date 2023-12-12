@@ -9,9 +9,12 @@ import java.util.List;
 public interface DmMapper {
     int insDm(DmUserInsDto dto);
     List<DmSelVo> selDmAll(DmSelDto dto);
+    Integer selDmByIns(DmInsDto dto);
+    int postDm(DmInsDto dto);
     // -------------t_dm_user
     int insDmUser(DmUserInsDto dto);
     // --------------t_dm_msg
     int insDmMsg(DmMsgInsDto dto);
     List<DmMsgSelVo> selDmMsgAll(DmMsgSelDto dto);
+    int delDmMsg(DmMsgDelDto dto);
 }

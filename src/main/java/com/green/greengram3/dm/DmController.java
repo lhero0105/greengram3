@@ -19,10 +19,16 @@ public class DmController {
     public List<DmSelVo> getDmAll(DmSelDto dto){
         return service.getDmAll(dto);
     }
+    @PostMapping
+    public DmSelVo postDm(@RequestBody DmInsDto dto){
+        return service.postDm(dto);
+    }
+
 
     //----------------------------- t_dm_msg
     @PostMapping("/msg")
     public ResVo postDmMsg(@RequestBody DmMsgInsDto dto) {
+        log.info("dto : {}", dto);
         return service.postDmMsg(dto);
     }
     @GetMapping("/msg")
@@ -31,4 +37,9 @@ public class DmController {
         return service.getMsgAll(dto);
     }
     // page 2 가 넘어오면 방이 있단 소리니까 방이 있는지에 관한 분기문을 안씁니다
+
+    @DeleteMapping("/msg")
+    public ResVo delDmMsg(DmMsgDelDto dto){
+        return service.delDmMsg(dto);
+    }
 }

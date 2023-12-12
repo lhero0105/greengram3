@@ -1,13 +1,16 @@
 package com.green.greengram3.dm.model;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Builder
+@Getter
 public class DmSelVo {
     private int idm;
     private String lastMsg;
     private String lastMsgAt;
+    private int otherPersonIuser;
     private String otherPersonNm;
     private String otherPersonPic;
-    // idm 하나당 other하나
 }

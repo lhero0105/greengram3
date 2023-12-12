@@ -17,6 +17,9 @@
             <if test=" uid != null and uid != '' ">
                 uid = #{uid}
             </if>
+            <if test=" iuser > 0 ">
+                iuser = #{iuser}
+            </if>
         </where>
     </select>
 

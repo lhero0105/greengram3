@@ -1,13 +1,15 @@
 package com.green.greengram3.dm.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor
+@ToString
 public class DmMsgInsDto {
     private int idm;
     @JsonIgnore
     private int seq;
-    private int loginedIsuer;
+    private int loginedIuser;
     private String msg;
 }

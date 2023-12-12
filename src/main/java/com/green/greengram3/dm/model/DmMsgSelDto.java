@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class DmMsgSelDto {
-    private int loginedIuser;
     private int page;
+    private int idm;
     @JsonIgnore
     private int startIdx;
     @JsonIgnore
