@@ -42,10 +42,16 @@ public class UserController {
         return service.signin(dto); // 1성공, 2:아이디없음, 3:비번틀림
     }
 
-    // 유저 프로필
-
+    // 웹 푸시
+    @PatchMapping("/firebase-token")
+    public ResVo patchUserFirebaseToken(@RequestBody UserFirebaseTokenPatchDto dto) {
+        return service.patchUserFirebaseToken(dto);
+    }
     // 유저 프사 변경
-
+    @PatchMapping("/pic")
+    public ResVo patchUserPic(@RequestBody UserPicPatchDto dto) {
+        return service.patchUserPic(dto);
+    }
     // -----------follow
     // ResVo - result : 1-following, 0-취소
     @PostMapping("/follow")
@@ -53,7 +59,7 @@ public class UserController {
         return service.toggleFollow(dto);
     }
 
-    //
+    // 유저 프로필 정보
     @GetMapping
     @Operation(summary = "유저 정보", description = "프로필 화면에서 사용할 프로필 유저 정보")
     public UserInfoVo getUserInfo(UserInfoSelDto dto) {

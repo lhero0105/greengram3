@@ -11,7 +11,7 @@
     <select id="selDmAll">
         SELECT
         A.idm, A.last_msg AS lastMsg, A.last_msg_at AS lastMsgAt
-        , D.nm AS otherPersonNm, D.pic AS otherPersonPic
+        , D.iuser AS otherPersonIuser, D.nm AS otherPersonNm, D.pic AS otherPersonPic
         FROM t_dm A
         INNER JOIN t_dm_user B
         ON A.idm = B.idm
@@ -23,6 +23,21 @@
         AND C.iuser != #{loginedIuser}
         ORDER BY A.last_msg_at DESC
         LIMIT #{startIdx}, #{rowCount}
+    </select>
+
+    <update id="updDmLastMsg">
+        UPDATE t_dm
+        SET last_msg = #{msg}
+        WHERE idm = #{idm}
+    </update>
+
+    <select id="selOtherPersonByLoginUser">
+        SELECT B.iuser, B.pic, B.firebase_token AS firebaseToken
+        FROM t_dm_user A
+        INNER JOIN t_user B
+        ON A.iuser = B.iuser
+        WHERE A.idm = #{idm}
+        AND A.iuser != #{loginedIuser}
     </select>
 
     <select id="selDmByIns">

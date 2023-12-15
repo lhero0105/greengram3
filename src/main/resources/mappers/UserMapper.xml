@@ -23,18 +23,13 @@
         </where>
     </select>
 
-    <delete id="delUserFollow">
-        DELETE FROM t_user_follow
-        WHERE from_iuser = #{fromIuser}
-        AND to_iuser = #{toIuser}
-    </delete>
-
-    <insert id="insUserFollow">
-        INSERT INTO t_user_follow
-        SET from_iuser = #{fromIuser}
-        , to_iuser = #{toIuser}
-    </insert>
-
+    <!--
+    followState값
+    0 - 둘 다 follow 안 함
+    1 - loginedIuser가 targetIuser를 팔로우
+    2 - targetIuser가 loginedIuser를 팔로우
+    3 - 둘 다 follow
+    -->
     <select id="selUserInfo">
         SELECT COUNT(DISTINCT B.ifeed) AS feedCnt, COUNT(C.ifeed) AS favCnt
         , A.nm, A.created_at AS createdAt
@@ -54,4 +49,32 @@
         ) D
         ON A.iuser = D.iuser
     </select>
+
+    <update id="updUserFirebaseToken">
+        UPDATE t_user
+        SET firebase_token = #{firebaseToken}
+        WHERE iuser = #{iuser}
+    </update>
+
+    <update id="updUserPic">
+        UPDATE t_user
+        SET pic = #{pic}
+        WHERE iuser = #{iuser}
+    </update>
+
+    <!-- ///////////////////////////// t_user_follow ///////////// -->
+
+
+    <delete id="delUserFollow">
+        DELETE FROM t_user_follow
+        WHERE from_iuser = #{fromIuser}
+        AND to_iuser = #{toIuser}
+    </delete>
+
+    <insert id="insUserFollow">
+        INSERT INTO t_user_follow
+        SET from_iuser = #{fromIuser}
+        , to_iuser = #{toIuser}
+    </insert>
+
 </mapper>
