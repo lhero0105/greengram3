@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class Exam1 {
-    @Test // 해당 메소드를 테스트 하고 싶을 때 붙혀 줍니다.
+    @Test // 해당 메소드를 테스트 하고 싶을 때 붙혀 줍니다.메소드를 실행시켜줍니다.
     @DisplayName("테스트1") // 옵션이며, 가독성이 좋습니다.(안적으면 test1()이 뜹니다.)
     public void test1(){
         System.out.println("test1");
@@ -13,7 +13,7 @@ public class Exam1 {
         Assertions.assertEquals(5, sum);
         // 왼쪽(기대하는것)오른쪽(실제)을 비교하여 같으면 성공 다르면 실패합니다.
     }
-    // 각각의 테스터는 독립적이며, 절대 영향을 미치지 않습니다. 순서는 junit이 결정합니다.
+    // 각각의 테스터는 독립적이며, 절대 서로 영향을 미치지 않습니다. 순서는 junit이 결정합니다.
 
     @Test
     public void test2(){

@@ -25,8 +25,13 @@ class FeedFavMapperTest {
         dto.setIuser(3);
         // 트랜젝션이기 때문에 끝나면 자동 롤백 됩니다.
         // select가 있다면 볼 수 있습니다. 없다면 새로 만들어줌
+
+        List<FeedFavDto> result2 = mapper.selFeedFavForTest(dto);
+        System.out.println(result2);
+        assertEquals(0, result2.size(), "첫번째 insert전 미리 확인"); // select해 온게 0인지 확인
+
         int affectedRows1 = mapper.insFeedFav(dto);
-        assertEquals(1, affectedRows1); // 같은지 확인
+        assertEquals(1, affectedRows1, "첫번째 insert"); // 같은지 확인
 
         List<FeedFavDto> result = mapper.selFeedFavForTest(dto);
         System.out.println(result);
@@ -34,13 +39,13 @@ class FeedFavMapperTest {
         // 얘는 처음부터 잘 만들어 주어야 합니다.
         assertEquals(1, result.size(), "첫번째 insert 확인"); // select해 온게 null이 아닌지 확인
 
-        dto.setIuser(5);
+        dto.setIuser(4);
         dto.setIfeed(1);
 
         int affectedRows2 = mapper.insFeedFav(dto);
         assertEquals(1, affectedRows2);
-        List<FeedFavDto> result2 = mapper.selFeedFavForTest(dto);
-        System.out.println(result2);
+        List<FeedFavDto> result3 = mapper.selFeedFavForTest(dto);
+        System.out.println(result3);
         assertEquals(1, result.size(), "두번째 insert 확인");
     }
 
@@ -83,11 +88,9 @@ class FeedFavMapperTest {
         FeedDelDto dto = new FeedDelDto();
         dto.setIfeed(ifeed);
         int delAffectedRows = mapper.delFeedFavAll(dto);
-        assertEquals(1, delAffectedRows);
+        assertEquals(selList.size(), delAffectedRows);
 
         List<FeedFavDto> selList2 = mapper.selFeedFavForTest(selDto);
         assertEquals(0, selList2.size());
-
-
     }
 }

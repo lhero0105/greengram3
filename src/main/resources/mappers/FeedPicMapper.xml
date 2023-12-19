@@ -11,6 +11,15 @@
             (#{ifeed}, #{pic})
         </foreach>
     </insert>
+    <!--test용 dto박스명이 달라서 그냥 하나 더 만듬-->
+    <insert id="insFeedPics">
+        INSERT INTO t_feed_pics
+        (ifeed, pic)
+        VALUES
+        <foreach collection="pics" item="pic" separator=",">
+            (#{ifeed}, #{pic})
+        </foreach>
+    </insert>
     <select id="selFeedPic">
         SELECT pic FROM t_feed_pics
         WHERE ifeed = #{ifeed}
@@ -20,15 +29,13 @@
         WHERE ifeed = #{ifeed}
     </delete>
 
-    <delete id="delFeedPics">
+    <delete id="delFeedPicsAll">
         DELETE A
         FROM t_feed_pics A
         JOIN t_feed B
         ON A.ifeed = B.ifeed
         WHERE B.ifeed = #{ifeed}
         AND B.iuser = #{iuser}
-<!--
-        해당하지 않는 피드에 유저를 쓰면 영향받은 행으로 확인 가능
--->
+<!--해당하지 않는 피드에 유저를 쓰면 영향받은 행으로 확인 가능-->
     </delete>
 </mapper>

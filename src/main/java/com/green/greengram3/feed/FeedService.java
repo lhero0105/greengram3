@@ -14,6 +14,7 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
+// 생성자를 통한 di 주입
 @Slf4j
 public class FeedService {
     private final FeedMapper mapper;
@@ -27,15 +28,15 @@ public class FeedService {
                 .contents(dto.getContents())
                 .location(dto.getLocation())
                 .build();
-        int affectedRow1 = mapper.insFeed(pDto);
-        log.info("affectedRow1 : {}", affectedRow1);
+        int feedAffectedRows = mapper.insFeed(pDto);
+        log.info("feedAffectedRows : {}", feedAffectedRows);
         FeedPicInsProcDto pPDto = FeedPicInsProcDto.builder()
                 .ifeed(pDto.getIfeed())
                 .pics(dto.getPics())
                 .build();
-        int affectedRow2 = feedPicMapper.insFeedPic(pPDto);
-        log.info("affectedRow2 : {}", affectedRow2);
-        return new ResVo(pDto.getIfeed());
+        int feedPicsAffectedRows = feedPicMapper.insFeedPic(pPDto);
+        log.info("feedPicsAffectedRows : {}", feedPicsAffectedRows);
+        return new ResVo(dto.getIfeed());
     }
     public List<FeedSelVo> selFeedAll(FeedSelDto dto){
         List<FeedSelVo> list = mapper.selFeed(dto);

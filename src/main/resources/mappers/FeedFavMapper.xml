@@ -23,19 +23,13 @@
         AND ifeed = #{ifeed}
     </delete>
 
-    <delete id="delFeedFavByFeed">
+<!--    <delete id="delFeedFavByFeed">
         DELETE FROM t_feed_fav
         WHERE ifeed = #{ifeed}
-    </delete>
+    </delete>-->
 
     <delete id="delFeedFavAll">
         DELETE FROM t_feed_fav
         WHERE ifeed = #{ifeed}
     </delete>
-
-    <select id="selFeedFavForTest">
-        SELECT ifeed, iuser
-        FROM t_feed_fav
-        WHERE ifeed = #{ifeed}
-    </select>
 </mapper>

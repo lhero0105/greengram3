@@ -12,8 +12,6 @@ public interface FeedFavMapper {
     List<FeedFavDto> selFeedFavForTest(FeedFavDto dto);
     // 테스트에서만 사용합니다.
     int delFeedFav(FeedFavDto dto);
-    int delFeedFavByFeed(FeedDelDto dto); //방법 1
+/*    int delFeedFavByFeed(FeedDelDto dto); //방법 1*/
     int delFeedFavAll(FeedDelDto dto); //방법 2
-    FeedDelDto selFeedFavForTest2(FeedDelDto dto);
-    // 테스트에서만 사용합니다.
 }
