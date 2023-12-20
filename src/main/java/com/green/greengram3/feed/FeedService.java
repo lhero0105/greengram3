@@ -41,19 +41,6 @@ public class FeedService {
     public List<FeedSelVo> selFeedAll(FeedSelDto dto){
         List<FeedSelVo> list = mapper.selFeed(dto);
 
-/*        List<Integer> ifeed = new ArrayList();
-        Map<Integer, FeedSelVo> hashMap = new HashMap();
-        for ( FeedSelVo vo : list ) {
-            ifeed.add(vo.getIfeed());
-            hashMap.put(vo.getIfeed(), vo);
-        }
-        log.info("-----------------------");
-        List<FeedPicList> pics = feedPicMapper.selFeedPic(ifeed);
-        // 원하는 모든 ifeed에 해당하는 각각의 객체들을 저장합니다.
-        for ( FeedPicList pic : pics ) {
-            FeedSelVo vo = hashMap.get(pic.getIfeed()); // ifeed에 해당하는 주솟값 저장
-            List<String> picList = vo.getPics();
-        }*/
         FeedCommentSelProcDto fcDto = new FeedCommentSelProcDto();
         fcDto.setStardIdx(0);
         fcDto.setRowCount(Const.FEED_COMMENT_FIRST_CNT);
