@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,9 @@ public class FeedController {
     @Operation(summary = "피드 등록", description = "피드 등록 처리")
     @PostMapping
     public ResVo postFeed(@RequestBody FeedInsDto dto){
-        return service.postFeed(dto);
+        ResVo vo = service.postFeed(dto);
+        System.out.println(vo.getResult());
+        return vo;
     }
 
     @Operation(summary = "피드 리스트", description = "피드 추가 처리")
@@ -45,7 +48,8 @@ public class FeedController {
     @DeleteMapping
     public ResVo delFeed(FeedDelDto dto){
         log.info("dto : {}", dto);
-        return service.delFeed(dto);
+        ResVo vo = service.delFeed(dto); // 이렇게 작성이 되어 있는지 검증
+        return vo;
     }
 
 

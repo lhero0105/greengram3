@@ -54,7 +54,9 @@ public class FeedService {
                 vo.setIsMoreComments(1);
                 vo.getComments().remove(vo.getComments().size() - 1);
             }
+
         }
+        // return new ArrayList<>();
         return list;
     }
     public ResVo delFeed(FeedDelDto dto){
