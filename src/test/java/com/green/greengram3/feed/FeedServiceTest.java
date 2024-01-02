@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -47,7 +48,7 @@ class FeedServiceTest {
         // 가짜기에 그냥 호출하면 에러나 이상한 값이 올거기에
         when(mapper.insFeed(any())).thenReturn(1);
         // 값이 아무거나 들어 갈 때 1값을 리턴해 줘
-        when(feedPicMapper.insFeedPic(any())).thenReturn(3);
+        when(feedPicMapper.insFeedPics(any())).thenReturn(3);
 
         FeedInsDto dto = new FeedInsDto();
         dto.setIfeed(100);
@@ -57,7 +58,7 @@ class FeedServiceTest {
 
         // 진짜로 이 메소드 호출했는지 검증할 때 사용
         verify(mapper).insFeed(any());
-        verify(feedPicMapper).insFeedPic(any());
+        verify(feedPicMapper).insFeedPics(any());
 
         FeedInsDto dto2 = new FeedInsDto();
         dto2.setIfeed(200);

@@ -24,10 +24,8 @@ public class FeedController {
 
     @Operation(summary = "피드 등록", description = "피드 등록 처리")
     @PostMapping
-    public ResVo postFeed(@RequestBody FeedInsDto dto){
-        ResVo vo = service.postFeed(dto);
-        System.out.println(vo.getResult());
-        return vo;
+    public ResVo postFeed(@RequestBody FeedInsDto dto) {
+        return service.postFeed(dto);
     }
 
     @Operation(summary = "피드 리스트", description = "피드 추가 처리")

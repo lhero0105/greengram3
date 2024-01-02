@@ -22,20 +22,11 @@ public class FeedService {
     private final FeedFavMapper feedFavMapper;
     private final FeedCommentMapper feedCommentMapper;
 
-    public ResVo postFeed(FeedInsDto dto){
-        FeedInsProcDto pDto = FeedInsProcDto.builder()
-                .iuser(dto.getIuser())
-                .contents(dto.getContents())
-                .location(dto.getLocation())
-                .build();
-        int feedAffectedRows = mapper.insFeed(pDto);
-        log.info("feedAffectedRows : {}", feedAffectedRows);
-        FeedPicInsProcDto pPDto = FeedPicInsProcDto.builder()
-                .ifeed(pDto.getIfeed())
-                .pics(dto.getPics())
-                .build();
-        int feedPicsAffectedRows = feedPicMapper.insFeedPic(pPDto);
-        log.info("feedPicsAffectedRows : {}", feedPicsAffectedRows);
+    public ResVo postFeed(FeedInsDto dto) {
+        int feedAffectedRows = mapper.insFeed(dto);
+        log.info("feedAffectedRows: {}", feedAffectedRows);
+        int feedPicsAffectedRows = feedPicMapper.insFeedPics(dto);
+        log.info("feedPicsAffectedRows: {}", feedPicsAffectedRows);
         return new ResVo(dto.getIfeed());
     }
     public List<FeedSelVo> selFeedAll(FeedSelDto dto){

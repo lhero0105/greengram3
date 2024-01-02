@@ -10,8 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface FeedPicMapper {
-    int insFeedPic(FeedPicInsProcDto pDto);
-    int insFeedPics(FeedInsDto dto);// test용
+    int insFeedPics(FeedInsDto p);
     List<String> selFeedPic(int ifeed);
     int delFeedPicsAll(FeedDelDto dto);
 

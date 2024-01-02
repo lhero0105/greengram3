@@ -1,6 +1,7 @@
 package com.green.greengram3.feed;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.green.greengram3.MockMvcConfig;
 import com.green.greengram3.common.ResVo;
 import com.green.greengram3.feed.model.FeedDelDto;
 import com.green.greengram3.feed.model.FeedInsDto;
@@ -28,6 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@MockMvcConfig // 만들어 놓은 어노테이션을 사용합니다.
 @WebMvcTest(FeedController.class) // 스프링컨테이너 올려줄꺼고 빈등록된 컨테이너들을 저거해줍니다.
 class FeedControllerTest {
 
@@ -72,9 +74,10 @@ class FeedControllerTest {
         List<FeedSelVo> list = new ArrayList<>();
         FeedSelVo vo1 = new FeedSelVo();
         vo1.setIfeed(1);
-        vo1.setContents("abc"); // 한글 입력 시 깨집니다.
+        vo1.setContents("안녕하세여"); // 한글 입력 시 깨집니다.
         FeedSelVo vo2 = new FeedSelVo();
         vo1.setIfeed(2);
+        vo1.setContents("반가워요.");
         FeedSelVo vo3 = new FeedSelVo();
         vo1.setIfeed(3);
         list.add(vo1);
